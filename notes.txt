@@ -1,0 +1,17 @@
+Doit avoir un inventaire de ce qu'on a.
+Dans l'inventaire, il y a tout les ingrédients pour faire les recettes. Aussi, il y les articles de bases comme le lait, etc.
+Doit pouvoir se diviser en costco ou épicerie standard
+Doit avoir les recettes
+
+les menus
+legumes
+articles récurrents
+
+Chili et crispy salmon pas encore ajouté
+
+
+
+Item : Nom de l'article
+In stock : en stock à la maison
+Wanted : Est ce qu'on en veut à la maison
+Récurrent : Doit en avoir chaque semaine
