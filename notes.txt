@@ -7,11 +7,14 @@ les menus
 legumes
 articles récurrents
 
-Chili et crispy salmon pas encore ajouté
-
 
 
 Item : Nom de l'article
 In stock : en stock à la maison
 Wanted : Est ce qu'on en veut à la maison
 Récurrent : Doit en avoir chaque semaine
+
+
+Next to do:
+Definir les ingrédients dans les recettes
+Faire la liste en json
