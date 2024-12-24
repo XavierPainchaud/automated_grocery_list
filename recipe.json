@@ -1,0 +1,28 @@
+{
+    "author": "Author Name",
+    "linkOutUrl": "https://www.myrecipe.com",
+    "imageUrl": "https://www.myrecipe.com/recipeImage.jpg",
+    "name": "Hummus mit Rüebli",
+    "tagline": "",
+    "yield": "",
+    "time": "",
+    "nutrition": {
+        "calories": "500 kcal"
+    },
+    "items": [
+        {
+            "itemId": "Karotten",
+            "spec": "2-3"
+        },
+        {
+            "itemId": "Sumach",
+            "spec": "1/4 TL",
+            "altIcon": "Rosmarin",
+            "altSection": "Früchte & Gemüse"
+        },
+        {
+            "itemId": "Salz",
+            "stock": true
+        }
+    ]
+}
