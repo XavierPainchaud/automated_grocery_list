@@ -3,77 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre liste d'épicerie</title>
+    <title>Votre Recette</title>
     <script async="async" src="//platform.getbring.com/widgets/import.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .recipe-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .ingredients-section {
+            margin: 20px 0;
+        }
+        .ingredients-title {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .ingredients-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .ingredients-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .bring-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Votre liste d'épicerie pour Bring!</h1>
-    <ul>
-        {% for item in shopping_list %}
-        <li>{{ item }}</li>  <!-- Display the item name -->
-        {% endfor %}
-    </ul>
-    
-    <!-- Bring Import Widget -->
-    <div data-bring-import data-bring-language="en">
-        <a href="https://www.getbring.com">Importer dans Bring!</a>
+    <div class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
+        <h1 itemprop="name">Votre Recette</h1>
+        
+        <div class="ingredients-section">
+            <h2 class="ingredients-title">Ingrédients</h2>
+            <div class="MuiTypography-root MuiTypography-body2 css-emttl8">
+                {% for item in shopping_list %}
+                {{ item }}<br>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="bring-button">
+            <div data-bring-import data-bring-language="en">
+                <a href="https://www.getbring.com">Importer dans Bring!</a>
+            </div>
+        </div>
+
+        <!-- Hidden metadata for Schema.org -->
+        <meta itemprop="description" content="Liste d'ingrédients pour votre recette">
+        <meta itemprop="recipeYield" content="1 portion">
     </div>
-    
-    <script>
-        // Dynamically inject the shopping list into the Bring widget
-        const bringWidget = document.querySelector('[data-bring-import]');
-        
-        // Log the bringWidget to ensure it's selected correctly
-        console.log("bringWidget:", bringWidget);
-        
-        const shoppingList = {{ shopping_list|tojson }};  // Render the list as JSON
-        
-        // Log shoppingList to check if it's correctly injected from Python
-        console.log("shoppingList:", shoppingList);
-        
-        // Format the shopping list for the Bring widget
-        const formattedList = {
-            ingredients: shoppingList
-        };
-        
-        // Log formattedList to ensure it's formatted correctly
-        console.log("formattedList:", formattedList);
 
-        //const attributs = JSON.stringify(formattedList);
-
-
-        const attributs = {
-            "author": "Author Name",
-            "linkOutUrl": "https://www.myrecipe.com",
-            "imageUrl": "https://www.myrecipe.com/recipeImage.jpg",
-            "name": "Hummus mit Rüebli",
-            "tagline": "",
-            "yield": "",
-            "time": "",
-            "nutrition": {
-            "calories": "500 kcal"
-            },
-            "items": [{
-            "itemId": "Karotten",
-            "spec": "2-3"
-            }, {
-            "itemId": "Sumach",
-            "spec": "1/4 TL",
-            "altIcon": "Rosmarin",
-            "altSection": "Früchte & Gemüse"
-            }, {
-            "itemId": "Salz",
-            "stock": true
-            }]
-            };
-
-        // Log the final list data
-        console.log("attributs:", attributs);
-
-
-        // Set the 'data-bring-items' attribute for the Bring widget
-        bringWidget.setAttribute('data-bring-items', attributs);
-        bringWidget.setAttribute('data-bring-import', attributs);
-    </script> 
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Votre Recette",
+        "recipeIngredient": [
+            {% for item in shopping_list %}
+                "{{ item }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        "description": "Liste d'ingrédients pour votre recette",
+        "recipeYield": "1 portion"
+    }
+    </script>
 </body>
 </html>

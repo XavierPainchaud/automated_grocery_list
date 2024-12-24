@@ -11,4 +11,4 @@ Récurrent : Doit en avoir chaque semaine
 
 Next to do:
 Definir les ingrédients dans les recettes
-Comprendre quel format pour importer dans bring
+Maybe watch to import from a website with ingredients

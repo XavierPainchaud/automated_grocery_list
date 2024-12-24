@@ -18,7 +18,7 @@ def select_week():
             return jsonify({"message": f"Aucune recette trouvée pour la semaine {week}"}), 404
 
         # Render the list for Bring
-        return render_template('bring_list.html', shopping_list=shopping_list)
+        return render_template('bring_list.html', shopping_list=shopping_list, week=week)
     
     # Render the week selection form
     return render_template('select_week.html')
