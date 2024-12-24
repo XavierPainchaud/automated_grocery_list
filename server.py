@@ -59,8 +59,7 @@ def generate_shopping_list(week):
                 if item not in shopping_list:
                     shopping_list.append(item)
 
-        bring_json = {"items": [{"name": item} for item in shopping_list]}
-        return bring_json
+        return shopping_list
 
     except Exception as e:
         return {"message": f"Erreur dans la génération de la liste d'épicerie: {str(e)}"}, 500

@@ -10,7 +10,7 @@
     <h1>Votre liste d'épicerie pour Bring!</h1>
     <ul>
         {% for item in shopping_list %}
-        <li>{{ item.name }}</li>  <!-- Display the item name -->
+        <li>{{ item }}</li>  <!-- Display the item name -->
         {% endfor %}
     </ul>
     
@@ -22,12 +22,30 @@
     <script>
         // Dynamically inject the shopping list into the Bring widget
         const bringWidget = document.querySelector('[data-bring-import]');
-        const shoppingList = {{ shopping_list|tojson }};  // Render the list as JSON
-
-        // Format the shopping list for the Bring widget
-        const formattedList = shoppingList.map(item => ({ name: item.name }));
         
-        bringWidget.setAttribute('data-bring-items', JSON.stringify({ "items": formattedList }));
-    </script>    
+        // Log the bringWidget to ensure it's selected correctly
+        console.log("bringWidget:", bringWidget);
+        
+        const shoppingList = {{ shopping_list|tojson }};  // Render the list as JSON
+        
+        // Log shoppingList to check if it's correctly injected from Python
+        console.log("shoppingList:", shoppingList);
+        
+        // Format the shopping list for the Bring widget
+        const formattedList = {
+            ingredients: shoppingList
+        };
+        
+        // Log formattedList to ensure it's formatted correctly
+        console.log("formattedList:", formattedList);
+
+        const attributs = JSON.stringify(formattedList);
+
+        // Log the final list data
+        console.log("attributs:", attributs);
+
+        // Set the 'data-bring-items' attribute for the Bring widget
+        bringWidget.setAttribute('data-bring-items', attributs);
+    </script> 
 </body>
 </html>
