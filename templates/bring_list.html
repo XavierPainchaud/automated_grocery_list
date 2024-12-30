@@ -3,87 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Recette</title>
-    <script async="async" src="//platform.getbring.com/widgets/import.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .recipe-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
-        }
-        .ingredients-section {
-            margin: 20px 0;
-        }
-        .ingredients-title {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-        .ingredients-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .ingredients-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .bring-button {
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+    <title>Recipe Test</title>
+    <script async src="//platform.getbring.com/widgets/import.js"></script>
 </head>
 <body>
-    <div class="recipe-card" itemscope itemtype="https://schema.org/Recipe">
-        <h1 itemprop="name">Votre Recette</h1>
-        
-        <div class="ingredients-section">
-            <h2 class="ingredients-title">Ingrédients</h2>
-            <div class="MuiTypography-root MuiTypography-body2 css-emttl8">
-                {% for item in shopping_list %}
-                {{ item }}<br>
-                {% endfor %}
-            </div>
-        </div>
-        
-        <div class="bring-button">
-            <div data-bring-import data-bring-language="en">
-                <a href="https://www.getbring.com">Importer dans Bring!</a>
-            </div>
-        </div>
-
-        <!-- Hidden metadata for Schema.org -->
-        <meta itemprop="description" content="Liste d'ingrédients pour votre recette">
-        <meta itemprop="recipeYield" content="1 portion">
+    <!-- Bring! Button -->
+    <div data-bring-import data-bring-language="fr" data-bring-import-version="1" style="display:block; margin-bottom: 20px;">
+        <a href="https://www.getbring.com">Bring! Einkaufsliste App f&uuml;r iPhone und Android</a>
     </div>
-
-    <!-- JSON-LD structured data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Recipe",
-        "name": "Votre Recette",
-        "recipeIngredient": [
-            {% for item in shopping_list %}
-                "{{ item }}"{% if not loop.last %},{% endif %}
-            {% endfor %}
-        ],
-        "description": "Liste d'ingrédients pour votre recette",
-        "recipeYield": "1 portion"
-    }
-    </script>
+    
+    <div itemscope itemtype="https://schema.org/Recipe">
+        <h1 itemprop="name">Mom's World Famous Banana Bread</h1>
+        <p>By <span itemprop="author">John Smith</span></p>
+        <img itemprop="image" src="https://natashaskitchen.com/wp-content/uploads/2018/05/Banana-Bread-Recipe-7.jpg" alt="Banana bread on a plate" />
+        <p itemprop="description">This classic banana bread recipe comes from my mom.</p>
+        <p>Prep Time: <time itemprop="prepTime" datetime="PT15M">15 minutes</time></p>
+        <p>Cook Time: <time itemprop="cookTime" datetime="PT1H">1 hour</time></p>
+        <p>Yield: <span itemprop="recipeYield">1 loaf</span></p>
+        <ul>
+            <li itemprop="recipeIngredient">3 or 4 ripe bananas, smashed</li>
+            <li itemprop="recipeIngredient">1 egg</li>
+            <li itemprop="recipeIngredient">3/4 cup of sugar</li>
+        </ul>
+    </div>
 </body>
 </html>

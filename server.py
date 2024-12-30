@@ -3,7 +3,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-@app.route('/select_week', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def select_week():
     if request.method == 'POST':
         # Retrieve the selected week from the form
