@@ -1,16 +1,17 @@
 {
+  "name": "Appart",
   "items": [
-    { "name": "Cassonade", "category": "Épicerie" },
-    { "name": "Viande à fondue", "category": "Boucherie" },
-    { "name": "Barre tendre Xav", "category": "Snacks" },
-    { "name": "Bœuf haché", "category": "Boucherie" },
-    { "name": "Bran Buds", "category": "Céréales" },
-    { "name": "Crème à raser", "category": "Hygiène" },
-    { "name": "Éponge à vaisselle", "category": "Produits ménagers" },
-    { "name": "Fruits", "category": "Fruits & Légumes" },
-    { "name": "Œufs", "category": "Produits laitiers & Oeufs" },
-    { "name": "Pain", "category": "Boulangerie" },
-    { "name": "Poulet", "category": "Boucherie" },
-    { "name": "Rasoir", "category": "Hygiène" }
+    { "name": "Cassonade" },
+    { "name": "Viande à fondue" },
+    { "name": "Barre tendre Xav" },
+    { "name": "Bœuf haché" },
+    { "name": "Bran Buds" },
+    { "name": "Crème à raser" },
+    { "name": "Éponge à vaisselle" },
+    { "name": "Fruits" },
+    { "name": "Œufs" },
+    { "name": "Pain" },
+    { "name": "Poulet" },
+    { "name": "Rasoir" }
   ]
 }
