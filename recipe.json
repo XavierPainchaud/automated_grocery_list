@@ -1,17 +1,28 @@
 {
-  "name": "Appart",
-  "items": [
-    { "name": "Cassonade" },
-    { "name": "Viande à fondue" },
-    { "name": "Barre tendre Xav" },
-    { "name": "Bœuf haché" },
-    { "name": "Bran Buds" },
-    { "name": "Crème à raser" },
-    { "name": "Éponge à vaisselle" },
-    { "name": "Fruits" },
-    { "name": "Œufs" },
-    { "name": "Pain" },
-    { "name": "Poulet" },
-    { "name": "Rasoir" }
-  ]
+    "author": "Xavier Painchaud",
+    "linkOutUrl": "https://www.ricardocuisine.com/recettes/6085-pain-aux-bananes-ultra-moelleux-le-meilleur",
+    "imageUrl": "https://www.mieuxenseigner.eu/boutique/image/cache/sellers/22059/1689698547_cd20aa1d322b3c028d8368249146e5b6-800x800.png",
+    "name": "Pain au bananes",
+    "tagline": "",
+    "yield": "",
+    "time": "",
+    "nutrition": {
+        "calories": "500 kcal"
+    },
+    "items": [
+        {
+            "itemId": "Karotten",
+            "spec": "2-3"
+        },
+        {
+            "itemId": "Sumach",
+            "spec": "1/4 TL",
+            "altIcon": "Rosmarin",
+            "altSection": "Früchte & Gemüse"
+        },
+        {
+            "itemId": "Salz",
+            "stock": true
+        }
+    ]
 }
