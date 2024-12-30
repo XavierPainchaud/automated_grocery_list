@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site Web</title>
+    <title>Recipe Test</title>
+    <script async src="//platform.getbring.com/widgets/import.js"></script>
 </head>
 <body>
-    <h1>Bienvenue sur mon site web !</h1>
-    <p>Ceci est une page d'accueil simple hébergée sur GitHub Pages.</p>
+    <!-- Bring! Button -->
+    <div data-bring-import data-bring-language="fr" data-bring-import-version="1" style="display:block; margin-bottom: 20px;">
+        <a href="https://www.getbring.com">Bring! Einkaufsliste App f&uuml;r iPhone und Android</a>
+    </div>
+    
+    <div itemscope itemtype="https://schema.org/Recipe">
+        <h1 itemprop="name">Mom's World Famous Banana Bread</h1>
+        <p>By <span itemprop="author">John Smith</span></p>
+        <img itemprop="image" src="https://natashaskitchen.com/wp-content/uploads/2018/05/Banana-Bread-Recipe-7.jpg" alt="Banana bread on a plate" />
+        <p itemprop="description">This classic banana bread recipe comes from my mom.</p>
+        <p>Prep Time: <time itemprop="prepTime" datetime="PT15M">15 minutes</time></p>
+        <p>Cook Time: <time itemprop="cookTime" datetime="PT1H">1 hour</time></p>
+        <p>Yield: <span itemprop="recipeYield">1 loaf</span></p>
+        <ul>
+            <li itemprop="recipeIngredient">3 or 4 ripe bananas, smashed</li>
+            <li itemprop="recipeIngredient">1 egg</li>
+            <li itemprop="recipeIngredient">3/4 cup of sugar</li>
+        </ul>
+    </div>
 </body>
 </html>
