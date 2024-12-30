@@ -1,28 +1,16 @@
 {
-    "author": "Author Name",
-    "linkOutUrl": "",
-    "imageUrl": "",
-    "name": "Hummus mit Rüebli",
-    "tagline": "",
-    "yield": "",
-    "time": "",
-    "nutrition": {
-        "calories": "500 kcal"
-    },
-    "items": [
-        {
-            "itemId": "Karotten",
-            "spec": "2-3"
-        },
-        {
-            "itemId": "Sumach",
-            "spec": "1/4 TL",
-            "altIcon": "Rosmarin",
-            "altSection": "Früchte & Gemüse"
-        },
-        {
-            "itemId": "Salz",
-            "stock": true
-        }
-    ]
+  "items": [
+    { "name": "Cassonade", "category": "Épicerie" },
+    { "name": "Viande à fondue", "category": "Boucherie" },
+    { "name": "Barre tendre Xav", "category": "Snacks" },
+    { "name": "Bœuf haché", "category": "Boucherie" },
+    { "name": "Bran Buds", "category": "Céréales" },
+    { "name": "Crème à raser", "category": "Hygiène" },
+    { "name": "Éponge à vaisselle", "category": "Produits ménagers" },
+    { "name": "Fruits", "category": "Fruits & Légumes" },
+    { "name": "Œufs", "category": "Produits laitiers & Oeufs" },
+    { "name": "Pain", "category": "Boulangerie" },
+    { "name": "Poulet", "category": "Boucherie" },
+    { "name": "Rasoir", "category": "Hygiène" }
+  ]
 }
