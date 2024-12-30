@@ -1,22 +1,19 @@
 {
-  "name": "Appart",
-  "recipes": [
-    {
-      "title": "Grocery List",
-      "ingredients": [
-        { "name": "Cassonade" },
-        { "name": "Viande à fondue" },
-        { "name": "Barre tendre Xav" },
-        { "name": "Bœuf haché" },
-        { "name": "Bran Buds" },
-        { "name": "Crème à raser" },
-        { "name": "Éponge à vaisselle" },
-        { "name": "Fruits" },
-        { "name": "Œufs" },
-        { "name": "Pain" },
-        { "name": "Poulet" },
-        { "name": "Rasoir" }
-      ]
-    }
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Liste d'épicerie",
+  "recipeIngredient": [
+    "Cassonade",
+    "Viande à fondue",
+    "Barre tendre Xav",
+    "Bœuf haché",
+    "Bran Buds",
+    "Crème à raser",
+    "Éponge à vaisselle",
+    "Fruits",
+    "Œufs",
+    "Pain",
+    "Poulet",
+    "Rasoir"
   ]
 }
