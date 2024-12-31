@@ -1,5 +1,17 @@
 from flask import Flask, request, render_template, jsonify
 import pandas as pd
+import sqlite3
+
+# Connexion à SQLite
+def get_data():
+    conn = sqlite3.connect('grocery.db')
+
+    # Charger les données
+    inventory = pd.read_sql_query("SELECT * FROM inventory", conn)
+    recipes = pd.read_sql_query("SELECT * FROM recipes", conn)
+
+    conn.close()
+    return inventory, recipes
 
 app = Flask(__name__)
 
@@ -24,15 +36,13 @@ def bring_list():
 
 def generate_shopping_list(week):
     try:
-        # Load Excel files
-        inventory = pd.read_excel('grocery\\inventaire.xlsx')
-        recipes = pd.read_excel('grocery\\recettes.xlsx')
+        inventory, recipes = get_data()
 
-        # Filter recipes for the selected week
+        # Filtrer les recettes pour la semaine sélectionnée
         selected_recipes = recipes[recipes['Semaine'] == week]
 
         if selected_recipes.empty:
-            return None
+            return None    
 
         # Extract and deduplicate ingredients
         all_ingredients = set()
