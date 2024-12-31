@@ -4,24 +4,23 @@ import pandas as pd
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
-def select_week():
+def bring_list():
     if request.method == 'POST':
-        # Retrieve the selected week from the form
         week = request.form.get('week', type=int)
-        
+
         if not week:
             return jsonify({"message": "Semaine non valide."}), 400
-        
+
         shopping_list = generate_shopping_list(week)
 
         if not shopping_list:
-            return jsonify({"message": f"Aucune recette trouvée pour la semaine {week}"}), 404
+            return render_template('index.html', shopping_list=[], week=week)
 
-        # Render the list for Bring
-        return render_template('bring_list.html', shopping_list=shopping_list, week=week)
-    
-    # Render the week selection form
-    return render_template('select_week.html')
+        return render_template('index.html', shopping_list=shopping_list, week=week)
+
+    # Affiche uniquement le formulaire si aucune semaine n'est sélectionnée
+    return render_template('index.html', shopping_list=None)
+
 
 def generate_shopping_list(week):
     try:
