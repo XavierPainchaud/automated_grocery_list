@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de Liste d'Épicerie</title>
     <script async src="//platform.getbring.com/widgets/import.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": "Liste d'épicerie",
+        "author": {
+            "@type": "Organization",
+            "name": "Générateur de Liste d'Épicerie"
+        },
+        "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
+        "recipeYield": "1 liste par semaine",
+        "recipeCategory": "Épicerie",
+        "recipeIngredient": [
+            {% for item in shopping_list %}"{{ item }}"{% if not loop.last %},{% endif %}{% endfor %}
+        ]
+        }
+    }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -104,7 +122,7 @@
         <!-- Section pour afficher la liste d'épicerie -->
         {% if shopping_list %}
         <div itemscope itemtype="https://schema.org/Recipe">
-            <h2>Liste d'épicerie pour la semaine {{ week }}</h2>
+            <h2 itemprop="name">Liste d'épicerie pour la semaine {{ week }}</h2>
             <ul>
                 {% for item in shopping_list %}
                 <li itemprop="recipeIngredient">{{ item }}</li>

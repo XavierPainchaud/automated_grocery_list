@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def bring_list():
+    shopping_list = []  # Définir une liste vide si aucune liste n'est disponible
+
     if request.method == 'POST':
         week = request.form.get('week', type=int)
 
@@ -31,7 +33,7 @@ def bring_list():
         return render_template('index.html', shopping_list=shopping_list, week=week)
 
     # Affiche uniquement le formulaire si aucune semaine n'est sélectionnée
-    return render_template('index.html', shopping_list=None)
+    return render_template('index.html', shopping_list=shopping_list)
 
 
 def generate_shopping_list(week):
