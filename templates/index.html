@@ -107,21 +107,10 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Générateur de Liste d'Épicerie</h1>
+    <body>
+        <h1>Pancakes moelleux</h1>
         <p>Par Xavier Painchaud</p>
         <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Pancakes moelleux">
-    <h2>Ingrédients</h2>
-    </header>
-    <main>
-        <!-- Formulaire pour choisir la semaine -->
-        <form method="post" action="/">
-            <label for="week">Choisissez une semaine :</label>
-            <input type="number" id="week" name="week" min="1" required placeholder="Semaine (ex: 1)">
-            <button type="submit">Générer la liste</button>
-        </form>
-
-        <!-- Section pour afficher la liste d'épicerie -->
         <h2>Ingrédients</h2>
         <ul>
             <li>200g de farine</li>
@@ -132,29 +121,14 @@
             <li>1 pincée de sel</li>
             <li>50g de beurre fondu</li>
         </ul>
-        {% if shopping_list %}
-        <div itemscope itemtype="https://schema.org/Recipe">
-            <h2 itemprop="name">Liste d'épicerie pour la semaine {{ week }}</h2>
-            <ul>
-                {% for item in shopping_list %}
-                <li itemprop="recipeIngredient">{{ item }}</li>
-                {% endfor %}
-            </ul>
-
-            <!-- Bouton Bring dans l'ancien style -->
-            <div data-bring-import 
-                 data-bring-language="fr" 
-                 data-bring-import-version="1" 
-                 style="display:block; margin-top: 20px;">
-                <a href="https://www.getbring.com">Bring! Einkaufsliste App für iPhone und Android</a>
-            </div>
+    
+        <!-- Bouton Bring -->
+        <div data-bring-import 
+             data-bring-language="fr" 
+             data-bring-import-version="1" 
+             style="margin-top: 20px;">
+            <a href="https://www.getbring.com" target="_blank">Ajouter les ingrédients à Bring!</a>
         </div>
-        {% else %}
-        <p>Veuillez choisir une semaine pour générer la liste d'épicerie.</p>
-        {% endif %}
-    </main>
-    <footer>
-        <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
-    </footer>
+    </body>
 </body>
 </html>
