@@ -17,42 +17,38 @@
         "description": "Une recette simple pour des pancakes légers et moelleux.",
         "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
         "recipeIngredient": [
-            {% for item in shopping_list %}"{{ item }}"{% if not loop.last %},{% endif %}{% endfor %}
+            "200g de farine",
+            "2 œufs",
+            "300ml de lait",
+            "1 sachet de levure chimique",
+            "50g de sucre",
+            "1 pincée de sel",
+            "50g de beurre fondu"
         ]
     }
     </script>
 </head>
 <body>
-    <header>
-        <h1>Pancakes moelleux</h1>
-        <p>Par Xavier Painchaud</p>
-        <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Pancakes moelleux">
-        <body>
-    <header>
-    <main>
-        <!-- Formulaire pour choisir la semaine -->
-        <form method="post" action="/">
-            <label for="week">Choisissez une semaine :</label>
-            <input type="number" id="week" name="week" min="1" required placeholder="Semaine (ex: 1)">
-            <button type="submit">Générer la liste</button>
-        </form>
-        <ul>
-            <li>200g de farine</li>
-            <li>2 œufs</li>
-            <li>300ml de lait</li>
-            <li>1 sachet de levure chimique</li>
-            <li>50g de sucre</li>
-            <li>1 pincée de sel</li>
-            <li>50g de beurre fondu</li>
-        </ul>
-    
-        <!-- Bouton Bring -->
-        <div data-bring-import 
-             data-bring-language="fr" 
-             data-bring-import-version="1" 
-             style="margin-top: 20px;">
-            <a href="https://www.getbring.com" target="_blank">Ajouter les ingrédients à Bring!</a>
-        </div>
-    </main>
+    <h1>Pancakes moelleux</h1>
+    <p>Par Xavier Painchaud</p>
+    <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Pancakes moelleux">
+    <h2>Ingrédients</h2>
+    <ul>
+        <li>200g de farine</li>
+        <li>2 œufs</li>
+        <li>300ml de lait</li>
+        <li>1 sachet de levure chimique</li>
+        <li>50g de sucre</li>
+        <li>1 pincée de sel</li>
+        <li>50g de beurre fondu</li>
+    </ul>
+
+    <!-- Bouton Bring -->
+    <div data-bring-import 
+         data-bring-language="fr" 
+         data-bring-import-version="1" 
+         style="margin-top: 20px;">
+        <a href="https://www.getbring.com" target="_blank">Ajouter les ingrédients à Bring!</a>
+    </div>
 </body>
 </html>
