@@ -25,8 +25,8 @@ def bring_list():
 def generate_shopping_list(week):
     try:
         # Load Excel files
-        inventory = pd.read_excel('C:\\github_repo\\automated_grocery_list\\grocery\\inventaire.xlsx')
-        recipes = pd.read_excel('C:\\github_repo\\automated_grocery_list\\grocery\\recettes.xlsx')
+        inventory = pd.read_excel('grocery\\inventaire.xlsx')
+        recipes = pd.read_excel('grocery\\recettes.xlsx')
 
         # Filter recipes for the selected week
         selected_recipes = recipes[recipes['Semaine'] == week]
