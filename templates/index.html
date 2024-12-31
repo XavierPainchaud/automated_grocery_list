@@ -10,14 +10,12 @@
         "@context": "https://schema.org",
         "@type": "Recipe",
         "name": "Liste d'épicerie",
-        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
         "author": {
-            "@type": "Organization",
-            "name": "Générateur de Liste d'Épicerie"
+            "@type": "Person",
+            "name": "Xavier Painchaud"
         },
         "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
-        "recipeYield": "1 liste par semaine",
-        "recipeCategory": "Épicerie",
+        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
         "recipeIngredient": [
             {% for item in shopping_list %}"{{ item }}"{% if not loop.last %},{% endif %}{% endfor %}
         ]
@@ -111,6 +109,9 @@
 <body>
     <header>
         <h1>Générateur de Liste d'Épicerie</h1>
+        <p>Par Xavier Painchaud</p>
+        <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Pancakes moelleux">
+    <h2>Ingrédients</h2>
     </header>
     <main>
         <!-- Formulaire pour choisir la semaine -->
