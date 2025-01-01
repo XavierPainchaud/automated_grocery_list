@@ -131,5 +131,33 @@
     <footer>
         <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
     </footer>
+<script>
+    function generateJsonLd(shoppingList, week) {
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "Recipe",
+            "name": `Liste d'épicerie pour la semaine ${week}`,
+            "author": {
+                "@type": "Person",
+                "name": "Xavier Painchaud"
+            },
+            "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
+            "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
+            "recipeIngredient": shoppingList
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(jsonLd, null, 2);
+        document.head.appendChild(script);
+    }
+
+    // Assurez-vous d'appeler cette fonction après avoir généré la liste
+    const shoppingList = {{ shopping_list|tojson|safe }};
+    const week = {{ week|default(0) }};
+    if (shoppingList && week) {
+        generateJsonLd(shoppingList, week);
+    }
+</script>
 </body>
 </html>
