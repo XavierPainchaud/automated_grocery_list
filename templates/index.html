@@ -116,6 +116,14 @@
                 <li itemprop="recipeIngredient">{{ item }}</li>
                 {% endfor %}
             </ul>
+            
+            <!-- Bouton Bring! -->
+            <div data-bring-import 
+                 data-bring-language="fr" 
+                 data-bring-import-version="1" 
+                 style="display:block; margin-top: 20px;">
+                <a href="https://www.getbring.com">Importer cette liste dans Bring!</a>
+            </div>
         </div>
         {% else %}
         <p>Veuillez choisir une semaine pour générer la liste d'épicerie.</p>
