@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, render_template, jsonify
 import pandas as pd
 import sqlite3
 import json
@@ -18,21 +18,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def bring_list():
-    week = 1  # Semaine par défaut
-    shopping_list = generate_shopping_list(week)
-
-    json_ld = {
-        "@context": "https://schema.org",
-        "@type": "Recipe",
-        "name": f"Liste d'épicerie pour la semaine {week}",
-        "author": {
-            "@type": "Person",
-            "name": "Xavier Painchaud"
-        },
-        "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
-        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
-        "recipeIngredient": shopping_list
-    } if shopping_list else None
+    shopping_list = []
+    json_ld = None  # Par défaut, aucune donnée JSON-LD
 
     if request.method == 'POST':
         week = request.form.get('week', type=int)
@@ -41,6 +28,11 @@ def bring_list():
             return jsonify({"message": "Semaine non valide."}), 400
 
         shopping_list = generate_shopping_list(week)
+
+        if not shopping_list:
+            return render_template('index.html', shopping_list=[], week=week, json_ld=json_ld)
+
+        # Générer JSON-LD côté serveur
         json_ld = {
             "@context": "https://schema.org",
             "@type": "Recipe",
@@ -52,9 +44,11 @@ def bring_list():
             "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
             "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
             "recipeIngredient": shopping_list
-        } if shopping_list else None
+        }
 
-    return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
+        return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
+
+    return render_template('index.html', shopping_list=shopping_list, json_ld=json_ld)
 
 
 def generate_shopping_list(week):
