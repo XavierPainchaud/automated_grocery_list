@@ -6,26 +6,7 @@
     <title>Générateur de Liste d'Épicerie</title>
     <script async src="//platform.getbring.com/widgets/import.js"></script>
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Recipe",
-        "name": "Pancakes moelleux",
-        "author": {
-            "@type": "Person",
-            "name": "Xavier Painchaud"
-        },
-        "description": "Une recette simple pour des pancakes légers et moelleux.",
-        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
-        "recipeIngredient": [
-            "200g de farine",
-            "2 œufs",
-            "300ml de lait",
-            "1 sachet de levure chimique",
-            "50g de sucre",
-            "1 pincée de sel",
-            "50g de beurre fondu"
-        ]
-    }
+        {{ json_ld|safe }}
     </script>
     <style>
         body {
