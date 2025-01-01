@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import sqlite3
+import json
 
 # Connexion à SQLite
 def get_data():
@@ -17,7 +18,21 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def bring_list():
-    shopping_list = []  # Définir une liste vide par défaut
+    week = 1  # Semaine par défaut
+    shopping_list = generate_shopping_list(week)
+
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": f"Liste d'épicerie pour la semaine {week}",
+        "author": {
+            "@type": "Person",
+            "name": "Xavier Painchaud"
+        },
+        "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
+        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
+        "recipeIngredient": shopping_list
+    } if shopping_list else None
 
     if request.method == 'POST':
         week = request.form.get('week', type=int)
@@ -26,14 +41,20 @@ def bring_list():
             return jsonify({"message": "Semaine non valide."}), 400
 
         shopping_list = generate_shopping_list(week)
+        json_ld = {
+            "@context": "https://schema.org",
+            "@type": "Recipe",
+            "name": f"Liste d'épicerie pour la semaine {week}",
+            "author": {
+                "@type": "Person",
+                "name": "Xavier Painchaud"
+            },
+            "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
+            "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
+            "recipeIngredient": shopping_list
+        } if shopping_list else None
 
-        if not shopping_list:
-            return render_template('index.html', shopping_list=[], week=week)
-
-        return render_template('index.html', shopping_list=shopping_list, week=week)
-
-    # Affiche uniquement le formulaire si aucune semaine n'est sélectionnée
-    return render_template('index.html', shopping_list=shopping_list)
+    return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
 
 
 def generate_shopping_list(week):

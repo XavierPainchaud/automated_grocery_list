@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de Liste d'Épicerie</title>
     <script async src="//platform.getbring.com/widgets/import.js"></script>
+    {% if json_ld %}
+    <script type="application/ld+json">
+        {{ json_ld|safe }}
+    </script>
+    {% endif %}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,8 +98,8 @@
     <header>
         <h1>Générateur de Liste d'Épicerie</h1>
         <p>Par Xavier Painchaud</p>
-        <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Pancakes moelleux">
-    <h2>Ingrédients</h2>
+        <img src="https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg" alt="Panier avec une liste d'épicerie">
+        <h2>Ingrédients</h2>
     </header>
     <main>
         <!-- Formulaire pour choisir la semaine -->
@@ -103,7 +108,7 @@
             <input type="number" id="week" name="week" min="1" required placeholder="Semaine (ex: 1)">
             <button type="submit">Générer la liste</button>
         </form>
-		
+
         {% if shopping_list %}
         <div itemscope itemtype="https://schema.org/Recipe">
             <h2 itemprop="name">Liste d'épicerie pour la semaine {{ week }}</h2>
@@ -113,48 +118,20 @@
                 {% endfor %}
             </ul>
 
-            <!-- Bouton Bring dans l'ancien style -->
+            <!-- Bouton Bring! -->
             <div data-bring-import 
                  data-bring-language="fr" 
                  data-bring-import-version="1" 
                  style="display:block; margin-top: 20px;">
-                <a href="https://www.getbring.com">Bring! Einkaufsliste App für iPhone und Android</a>
+                <a href="https://www.getbring.com">Importer cette liste dans Bring!</a>
             </div>
         </div>
         {% else %}
-        <p>Veuillez choisir une semaine pour générer la liste d'épicerie.</p>
+        <p>Aucune liste disponible pour cette semaine.</p>
         {% endif %}
     </main>
     <footer>
         <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
     </footer>
-    <script>
-        function generateJsonLd(shoppingList, week) {
-            const jsonLd = {
-                "@context": "https://schema.org",
-                "@type": "Recipe",
-                "name": `Liste d'épicerie pour la semaine ${week}`,
-                "author": {
-                    "@type": "Person",
-                    "name": "Xavier Painchaud"
-                },
-                "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
-                "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
-                "recipeIngredient": shoppingList
-            };
-
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.text = JSON.stringify(jsonLd, null, 2);
-            document.head.appendChild(script);
-        }
-
-        // Vérifie si shopping_list est disponible, sinon évite l'exécution
-        const shoppingList = {{ shopping_list|tojson|safe }};
-        const week = {{ week|default(0) }};
-        if (shoppingList && week) {
-            generateJsonLd(shoppingList, week);
-        }
-    </script>
 </body>
 </html>
