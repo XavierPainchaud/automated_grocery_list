@@ -127,16 +127,37 @@
     <footer>
         <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
     </footer>
-    <!-- Script pour recharger le widget Bring! après la soumission -->
     <script>
-        document.querySelector('form').addEventListener('submit', function() {
-            setTimeout(() => {
+        // Écouter l'événement de soumission du formulaire
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Empêche le comportement par défaut si nécessaire
+            event.preventDefault();
+    
+            // Envoyer les données via une soumission classique
+            const form = event.target;
+            const formData = new FormData(form);
+    
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                // Remplacer le contenu principal avec le nouveau HTML
+                document.querySelector('main').innerHTML = new DOMParser()
+                    .parseFromString(html, 'text/html')
+                    .querySelector('main').innerHTML;
+    
+                // Réinitialiser le widget Bring!
                 const bringWidget = document.querySelector('[data-bring-import]');
                 if (bringWidget) {
-                    bringWidget.innerHTML = '';
-                    bringWidget.setAttribute('data-bring-import-version', Date.now()); // Forcer une mise à jour
+                    bringWidget.innerHTML = ''; // Nettoyer le widget
+                    bringWidget.setAttribute('data-bring-import-version', Date.now()); // Nouvelle version
                 }
-            }, 500); // Attendre un court instant après la soumission pour recharger le widget
+            })
+            .catch(error => {
+                console.error('Erreur lors de la mise à jour :', error);
+            });
         });
     </script>
 </body>
