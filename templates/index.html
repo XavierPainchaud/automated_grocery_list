@@ -127,5 +127,17 @@
     <footer>
         <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
     </footer>
+    <!-- Script pour recharger le widget Bring! après la soumission -->
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            setTimeout(() => {
+                const bringWidget = document.querySelector('[data-bring-import]');
+                if (bringWidget) {
+                    bringWidget.innerHTML = '';
+                    bringWidget.setAttribute('data-bring-import-version', Date.now()); // Forcer une mise à jour
+                }
+            }, 500); // Attendre un court instant après la soumission pour recharger le widget
+        });
+    </script>
 </body>
 </html>
