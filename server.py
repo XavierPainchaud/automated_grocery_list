@@ -27,20 +27,19 @@ def bring_list():
 
     shopping_list = generate_shopping_list(week)
 
-    if shopping_list:
-        # Générer JSON-LD côté serveur
-        json_ld = {
-            "@context": "https://schema.org",
-            "@type": "Recipe",
-            "name": f"Liste d'épicerie pour la semaine {week}",
-            "author": {
-                "@type": "Person",
-                "name": "Xavier Painchaud"
-            },
-            "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
-            "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
-            "recipeIngredient": shopping_list
-        }
+    # Générer JSON-LD côté serveur
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": f"Liste d'épicerie pour la semaine {week}",
+        "author": {
+            "@type": "Person",
+            "name": "Xavier Painchaud"
+        },
+        "description": "Une application pour générer automatiquement une liste d'épicerie hebdomadaire.",
+        "image": "https://static.vecteezy.com/ti/vecteur-libre/p2/2056660-panier-et-une-liste-de-produits-vectoriel.jpg",
+        "recipeIngredient": shopping_list
+    }
 
     return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
 
