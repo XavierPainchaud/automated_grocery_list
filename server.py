@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, redirect
 import pandas as pd
 import sqlite3
 import json
@@ -16,18 +16,23 @@ def get_data():
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def bring_list():
-    week = 1  # Semaine par défaut
-    shopping_list = []
-    json_ld = None  # Par défaut, aucune donnée JSON-LD
+@app.route('/')
+def home():
+    return redirect('/select_week')
 
-    if request.method == 'POST':
-        week = request.form.get('week', type=int)
+@app.route('/select_week', methods=['GET'])
+def select_week():
+    return render_template('select_week.html')
+
+@app.route('/ingredients', methods=['GET'])
+def bring_list():
+    week = request.args.get('week', type=int)
+    if not week:
+        return redirect('/select_week')  # Redirection si la semaine n'est pas définie
 
     shopping_list = generate_shopping_list(week)
 
-    # Générer JSON-LD côté serveur
+    # Générer JSON-LD
     json_ld = {
         "@context": "https://schema.org",
         "@type": "Recipe",
