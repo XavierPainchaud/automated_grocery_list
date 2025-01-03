@@ -128,25 +128,14 @@
         <p>&copy; 2024 Générateur de Liste d'Épicerie. Tous droits réservés.</p>
     </footer>
     <script>
-        // Réinitialiser le widget Bring! après le rechargement de la page
-        document.addEventListener('DOMContentLoaded', function() {
-            const bringWidget = document.querySelector('[data-bring-import]');
-            if (bringWidget) {
-                const newIngredients = Array.from(document.querySelectorAll('[itemprop="recipeIngredient"]'))
-                    .map(ingredient => ingredient.textContent.trim());
-                
-                // Mettre à jour le contenu avec les nouveaux ingrédients
-                const jsonLD = {
-                    "@context": "https://schema.org",
-                    "@type": "Recipe",
-                    "name": `Liste d'épicerie pour la semaine ${document.querySelector('[name="week"]').value}`,
-                    "recipeIngredient": newIngredients
-                };
-                console.log("JSON-LD :", jsonLD);
-                bringWidget.setAttribute('data-bring-import', JSON.stringify(jsonLD));
-                console.log("JSON-LD2 :", jsonLD);
-            }
-        });
+        // Vérifiez si le widget Bring! est bien initialisé
+        const bringWidget = document.querySelector('[data-bring-import]');
+        if (bringWidget) {
+            console.log("data-bring-import :", bringWidget.getAttribute('data-bring-import'));
+        } else {
+            console.log("Le widget Bring! n'a pas été trouvé dans la page.");
+        }
     </script>
+</body>
 </body>
 </html>
