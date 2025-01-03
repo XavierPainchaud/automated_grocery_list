@@ -18,20 +18,16 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def bring_list():
+    week = 1  # Semaine par défaut
     shopping_list = []
     json_ld = None  # Par défaut, aucune donnée JSON-LD
 
     if request.method == 'POST':
         week = request.form.get('week', type=int)
 
-        if not week:
-            return jsonify({"message": "Semaine non valide."}), 400
+    shopping_list = generate_shopping_list(week)
 
-        shopping_list = generate_shopping_list(week)
-
-        if not shopping_list:
-            return render_template('index.html', shopping_list=[], week=week, json_ld=json_ld)
-
+    if shopping_list:
         # Générer JSON-LD côté serveur
         json_ld = {
             "@context": "https://schema.org",
@@ -46,10 +42,7 @@ def bring_list():
             "recipeIngredient": shopping_list
         }
 
-        return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
-
-    return render_template('index.html', shopping_list=shopping_list, json_ld=json_ld)
-
+    return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
 
 def generate_shopping_list(week):
     try:
