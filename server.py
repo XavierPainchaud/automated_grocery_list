@@ -4,8 +4,7 @@ import json
 
 def get_data():
     # Charger les données depuis un fichier Excel
-    # Assurez-vous que le fichier Excel contient deux feuilles : "inventory" et "recipes"
-    file_path = 'grocery\\grocery.xlsx'  # Remplacez par le chemin vers votre fichier Excel
+    file_path = 'grocery//grocery.xlsx'
 
     inventory = pd.read_excel(file_path, sheet_name='inventory')
     recipes = pd.read_excel(file_path, sheet_name='recipes')
