@@ -1,17 +1,15 @@
 from flask import Flask, request, render_template, redirect
 import pandas as pd
-import sqlite3
 import json
 
-# Connexion à SQLite
 def get_data():
-    conn = sqlite3.connect('grocery.db')
+    # Charger les données depuis un fichier Excel
+    # Assurez-vous que le fichier Excel contient deux feuilles : "inventory" et "recipes"
+    file_path = 'grocery\\grocery.xlsx'  # Remplacez par le chemin vers votre fichier Excel
 
-    # Charger les données
-    inventory = pd.read_sql_query("SELECT * FROM inventory", conn)
-    recipes = pd.read_sql_query("SELECT * FROM recipes", conn)
+    inventory = pd.read_excel(file_path, sheet_name='inventory')
+    recipes = pd.read_excel(file_path, sheet_name='recipes')
 
-    conn.close()
     return inventory, recipes
 
 app = Flask(__name__)
