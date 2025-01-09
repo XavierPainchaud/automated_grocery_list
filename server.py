@@ -67,9 +67,7 @@ def generate_shopping_list(week):
             item_row = inventory[inventory['Item'] == ingredient]
             if not item_row.empty:
                 in_stock = item_row['In stock'].values[0]
-                wanted = item_row['Wanted'].values[0]
-                recurring = item_row['Recurring'].values[0]
-                if in_stock == "No" and (wanted == "Yes" or recurring == "Yes"):
+                if in_stock == "No":
                     shopping_list.append(ingredient)
 
         # Add recurring items to the shopping list

@@ -1,3 +1,7 @@
-Faire l'inventaire
-Faire les recettes
+Changer de server pour le deploiement
+Ajouter catégorie pour si costco ou appart
+Modifier code pour faire liste différente costco ou appart
 Trouver une manière pour bien gérer l'inventaire
+
+
+Ajouter des test si voulu
