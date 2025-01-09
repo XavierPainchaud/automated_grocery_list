@@ -25,3 +25,20 @@ button {
 button:hover {
     background-color: #45a049;
 }
+select {
+    font-size: 1em;
+    padding: 10px;
+    width: 150px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    appearance: none; /* Pour masquer les styles par défaut */
+    text-align: center;
+}
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(72, 207, 90, 0.5);
+}

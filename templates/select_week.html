@@ -7,10 +7,17 @@
     <link rel="stylesheet" href="static/style_select_week.css">
 </head>
 <body>
-    <h1>Choisissez une semaine</h1>
+    <h1>Choisissez une semaine entre 1 et 6 et le magasin pour la liste d'épicerie</h1>
     <form method="get" action="/ingredients">
         <label for="week">Semaine :</label>
         <input type="number" id="week" name="week" min="1" required>
+        
+        <label for="store">Magasin :</label>
+        <select id="store" name="store" required>
+            <option value="Costco">Costco</option>
+            <option value="Appart">Appart</option>
+        </select>
+        
         <button type="submit">Valider</button>
     </form>
 </body>

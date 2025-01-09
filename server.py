@@ -24,16 +24,17 @@ def select_week():
 @app.route('/ingredients', methods=['GET'])
 def bring_list():
     week = request.args.get('week', type=int)
-    if not week:
-        return redirect('/select_week')  # Redirection si la semaine n'est pas définie
+    store = request.args.get('store')
+    if not week or not store:
+        return redirect('/select_week')  # Redirection si la semaine ou le magasin n'est pas défini
 
-    shopping_list = generate_shopping_list(week)
+    shopping_list = generate_shopping_list(week, store)
 
     # Générer JSON-LD
     json_ld = {
         "@context": "https://schema.org",
         "@type": "Recipe",
-        "name": f"Liste d'épicerie pour la semaine {week}",
+        "name": f"Liste d'épicerie pour {store}, semaine {week}",
         "author": {
             "@type": "Person",
             "name": "Xavier Painchaud"
@@ -43,9 +44,10 @@ def bring_list():
         "recipeIngredient": shopping_list
     }
 
-    return render_template('index.html', shopping_list=shopping_list, week=week, json_ld=json.dumps(json_ld))
+    return render_template('index.html', shopping_list=shopping_list, week=week, store=store, json_ld=json.dumps(json_ld))
 
-def generate_shopping_list(week):
+
+def generate_shopping_list(week, store):
     try:
         inventory, recipes = get_data()
 
@@ -64,14 +66,14 @@ def generate_shopping_list(week):
         # Check inventory and add items to the shopping list
         shopping_list = []
         for ingredient in all_ingredients:
-            item_row = inventory[inventory['Item'] == ingredient]
+            item_row = inventory[(inventory['Item'] == ingredient) & (inventory['Store'] == store)]
             if not item_row.empty:
                 in_stock = item_row['In stock'].values[0]
                 if in_stock == "No":
                     shopping_list.append(ingredient)
 
         # Add recurring items to the shopping list
-        for _, row in inventory.iterrows():
+        for _, row in inventory[inventory['Store'] == store].iterrows():
             if row['Recurring'] == "Yes" and row['In stock'] == "No":
                 item = row['Item']
                 if item not in shopping_list:
