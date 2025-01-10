@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect
 import pandas as pd
 import json
+import os
 
 def get_data():
     # Charger les données depuis un fichier Excel
@@ -10,6 +11,21 @@ def get_data():
     recipes = pd.read_excel(file_path, sheet_name='recipes')
 
     return inventory, recipes
+
+def save_to_file(shopping_list, week, store):
+
+    # Définir le chemin du fichier dans C:\github_repo
+    repo_path = r"C:\liste_epicerie"
+    if not os.path.exists(repo_path):
+        os.makedirs(repo_path)  # Créer le dossier s'il n'existe pas
+
+    file_path = os.path.join(repo_path, f"liste_epicerie.txt")
+
+    # Écrire la liste dans le fichier
+    with open(file_path, "w", encoding="utf-8") as file:
+        for item in shopping_list:
+            file.write(f"{item}\n")
+    print(f"Liste enregistrée à : {file_path}")
 
 app = Flask(__name__)
 
@@ -29,6 +45,9 @@ def bring_list():
         return redirect('/select_week')  # Redirection si la semaine ou le magasin n'est pas défini
 
     shopping_list = generate_shopping_list(week, store)
+
+    if shopping_list:
+        save_to_file(shopping_list, week, store)  # Sauvegarder la liste dans un fichier texte
 
     # Générer JSON-LD
     json_ld = {
