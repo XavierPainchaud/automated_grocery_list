@@ -1,0 +1,9 @@
+1- Mettre l'inventaire à jour
+2- Commit and push les changement fait dans le fichier excel de l'inventaire
+3- Se rendre ici : https://automated-grocery-list.onrender.com
+4- Choisir la semaine et le magasin
+5- Importer la liste dans bring!
+
+*** Une fois que la liste est bien importée dans bring!
+6- Télécharger la liste
+7- Rouler la fonction "update_inventory.py" située ici : C:\update_inventory
